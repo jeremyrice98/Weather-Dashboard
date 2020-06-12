@@ -12,7 +12,7 @@ function initPage() {
     var cityNameEl = document.getElementById('city-name');
     console.log(searchHistory);
 
-    //initialize search for given city name
+    //initialize search for given city
     searchEl.addEventListener('click', function() {
         var searchTerm = inputEl.value;
         getWeather(searchTerm);
@@ -42,7 +42,7 @@ function initPage() {
         getWeather(searchHistory[searchHistory.length - 1]);
     }
 
-    // pull weather info from openweathermap to display   
+    // pull weather info from openweathermap
     function getWeather(cityName) {
         var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=' + apiKey;
         axios.get(queryURL)
@@ -86,7 +86,7 @@ function initPage() {
                 var forecastQueryURL = 'https://api.openweathermap.org/data/2.5/forecast?id=' + cityID + '&appid=' + apiKey;
                 axios.get(forecastQueryURL)
                     .then(function(response) {
-                        //  Parse response to display forecast for next 5 days underneath current conditions
+                        //  response to display forecast for next 5 days underneath current conditions
                         var forecastEls = document.querySelectorAll('.forecast');
                         for (i = 0; i < forecastEls.length; i++) {
                             forecastEls[i].innerHTML = '';
@@ -113,10 +113,10 @@ function initPage() {
                     })
             });
     }
-    //conversion formula from kelvin to fahrenheit 
+    //conversion formula 
     function k2f(K) {
         return Math.floor((K - 273.15) * 1.8 + 32);
     }
 };
-//allows page to reload search history and recall last searched history on refresh
+//allows page to reload search history and bring up last searched history on refresh
 initPage();
